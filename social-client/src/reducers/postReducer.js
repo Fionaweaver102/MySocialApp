@@ -3,7 +3,7 @@ const initialState = {
   loading: true
 }
 
-const postReducer = (state, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
