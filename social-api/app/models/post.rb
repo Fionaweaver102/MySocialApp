@@ -13,7 +13,6 @@ class Post < ApplicationRecord
       id: self.id, 
       description: self.description,
       img: self.img,
-      likes: self.likes,
       user_id: self.user_id,
       tags: self.tags 
     }
