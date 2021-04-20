@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user 
-  has_many :tags 
+  serialize :tags
 
   def self.arr_to_json 
     self.all.map do |p|
@@ -13,8 +13,8 @@ class Post < ApplicationRecord
       id: self.id, 
       description: self.description,
       img: self.img,
-      user_id: self.user_id,
-      tags: self.tags 
+      tags: self.tags,
+      user_id: self.user_id
     }
   end 
 end

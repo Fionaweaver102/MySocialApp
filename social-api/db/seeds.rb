@@ -5,10 +5,52 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+
+BASE_URL = 'https://dummyapi.io/data/api'
+API_ID = '6071f265e875902aa3eb1e5a'
+
+def get_users
+  resp = Faraday.new("#{BASE_URL}/user", headers: {
+    'app-id' => API_ID
+  }).get
+
+  user_data = JSON.parse(resp.body)
+
+  user_data['data'].each do |user|
+    User.create!(
+      firstName: user["firstName"],
+      lastName: user["lastName"],
+      email: user["email"],
+      gender: user["gender"],
+      phone: user["phone"],
+      birthday: user["dateOfBirth"],
+      picture: user["picture"]
+    )
+  end 
+end 
+
+def get_posts
+  resp = Faraday.new("#{BASE_URL}/post", headers: {
+    'app-id' => API_ID
+  }).get
+
+  post_data = JSON.parse(resp.body)
+
+  post_data['data'].each do |post|
+    Post.create!(
+      description: post['text'],
+      img: post['image'],
+      tags: post['tags']
+    )
+  end 
+
+end 
+
+get_users
+get_posts 
 
 
-User.create(firstName: 'Fiona', lastName: 'Weaver', gender: 'female', email: 'fiona.l.weaver@gmail.com', phone: 9295228177, username: 'fionaweaver', password: 'fionaweaver')
-Post.create(description: 'description1', img: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHw%3D&w=1000&q=80', user_id: 1)
-Post.create(description: 'description2', img: 'https://media.istockphoto.com/photos/child-hands-formig-heart-shape-picture-id951945718?k=6&m=951945718&s=612x612&w=0&h=ih-N7RytxrTfhDyvyTQCA5q5xKoJToKSYgdsJ_mHrv0=', user_id: 1)
-Tag.create(name: "tag1", post_id: 1)
-Tag.create(name: "tag2", post_id: 1)
+
+
+
