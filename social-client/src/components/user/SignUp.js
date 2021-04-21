@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button, TextField } from '@material-ui/core';
 
 
+
 const SignUp = (props) => {
   let history = useHistory();
 
@@ -112,13 +113,15 @@ const SignUp = (props) => {
         />
 
         <TextField
-          id="birthday"
-          label="Date of Birth"
-          name="birthday"
-          onChange={handleChange}
+          id="date"
+          label="Birthday"
+          type="date"
+          defaultValue="2017-05-24"
           value={values.birthday}
-          autoComplete="birthday"
-        />
+          onChange={handleChange}
+          InputLabelProps={{
+            shrink: true,
+          }} />
 
         <TextField
           id="gender"

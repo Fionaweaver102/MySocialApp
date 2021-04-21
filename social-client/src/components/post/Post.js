@@ -5,7 +5,6 @@ class Post extends Component {
 
     const { description, img, tags } = this.props;
 
-    console.log(tags);
     return (
       <div>
         <p>{description}</p>
@@ -19,13 +18,10 @@ class Post extends Component {
 
   getTags(tags) {
     let html = '';
-
     for (let i = 0; i < tags.length; i++) {
       let tag = tags[i];
-
       html += tag + ' ';
     }
-
     return html;
   }
 }

@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getPosts } from "../actions/postAction";
-import { LogOut } from "./user/LogOut";
-// import Button from '@material-ui/core/Button';
+import { LogOut } from './user/LogOut';
+import { logOutUser } from '../actions/userAction';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -17,18 +18,13 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/posts">Posts</Link></li>
-          <li><Link to="/Signup">Signup</Link></li>
-          <li><Link to="/Login">Login</Link></li>
-          <LogOut history={this.props.history} currentUser={this.props.currentUser} logOutUser={this.props.logOutUser} />
-
-        </ul>
-      </div>
+        <Button><Link to="/posts">Posts</Link></Button>
+        <Button><Link to="/posts/new">Create Post</Link></Button>
+        <Button><Link to="/profile">Profile</Link></Button>
+        <LogOut history={this.props.history} currentUser={this.props.currentUser} logOutUser={this.props.logOutUser} />
+      </div >
     )
   }
 }
 
-
-export default connect((state => ({ currentUser: state.currentUser, posts: state.posts })), { getPosts })(withRouter(Nav))
+export default connect((state => ({ currentUser: state.currentUser, posts: state.posts })), { logOutUser, getPosts })(withRouter(Nav))

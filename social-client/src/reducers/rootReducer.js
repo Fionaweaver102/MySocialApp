@@ -4,7 +4,7 @@ import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   posts: postReducer,
-  currentUser: userReducer,
+  user: userReducer,
   loading: loadingReducer
 });
 
