@@ -1,9 +1,5 @@
-// import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-// import axios from "axios";
-import { getPosts } from './actions/postAction';
-// import { checkLoginStatus } from './actions/user'
 import Nav from './components/Nav';
 import Posts from './components/post/Posts';
 import Footer from './components/Footer';
@@ -14,20 +10,13 @@ import SignUp from './components/user/SignUp';
 import PostForm from './components/post/PostForm';
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import EditUser from './components/user/Edit';
 
-
-// componentDidMount = () => {
-//   this.props.getPosts()
-//   console.log(this.props.posts);
-//   // this.props.userLoggedIn()
-// }
 
 class App extends Component {
-  componentDidMount = () => {
-    this.props.getPosts()
-    console.log(this.props.posts);
-    // this.props.userLoggedIn()
-  }
+  // componentDidMount = () => {
+  //   this.props.getPosts()
+  // }
 
   render() {
     const loggedIn = () => {
@@ -78,6 +67,16 @@ class App extends Component {
                 </>
               )
             )} />
+            < Route exact path="/user/edit" render={() => (
+              loggedIn() ? (
+                <Redirect to="/" />
+              ) : (
+                <>
+                  <Profile />
+                  <EditUser />
+                </>
+              )
+            )} />
           </Switch>
         </Router>
         <Footer />
@@ -88,9 +87,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
   }
 }
 
-export default connect(mapStateToProps, { getPosts })(App);
+export default connect(mapStateToProps)(App);
 

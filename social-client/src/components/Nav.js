@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getPosts } from "../actions/postAction";
+// import { getPosts } from "../actions/postAction";
 import { LogOut } from './user/LogOut';
 import { logOutUser } from '../actions/userAction';
 import Button from '@material-ui/core/Button';
+import { getPosts } from '../actions/postAction';
 
 
 

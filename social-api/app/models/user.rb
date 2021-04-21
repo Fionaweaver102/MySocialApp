@@ -20,8 +20,7 @@ class User < ApplicationRecord
       gender: self.gender,
       phone: self.phone,
       username: self.username,
-      password: self.password,
-      posts: self.posts,
+      password: self.password
     }
   end 
 

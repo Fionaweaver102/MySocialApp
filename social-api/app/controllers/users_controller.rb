@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
-
   def index 
     @users = User.all
 
@@ -10,7 +9,7 @@ class UsersController < ApplicationController
   end 
 
   def show
-    render json: UserSerializer.new(@user)
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
 
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: { user: UserSerializer.new(current_user) }, status: :accepted
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -46,6 +45,6 @@ class UsersController < ApplicationController
 
 
     def user_params
-      params.require(:user).permit(:firstName, :lastName, :gender, :username, :password, :email, :phone, :birthday)
+      params.require(:user).permit(:firstName, :lastName, :gender, :username, :password, :email, :phone, :birthday, :picture)
     end
 end

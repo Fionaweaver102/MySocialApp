@@ -143,6 +143,7 @@ const SignUp = (props) => {
 
         <TextField
           id="picture"
+          bordered={true}
           label="Profile Image"
           name="picture"
           onChange={handleChange}

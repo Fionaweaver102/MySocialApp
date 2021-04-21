@@ -10,8 +10,7 @@ export function getPosts() {
     })
       .then(resp => resp.json())
       .then(posts => {
-        dispatch({ type: "NOT_LOADING" })
-        dispatch({ type: "ADD_POSTS", posts })
+        dispatch({ type: "SET_POSTS", posts })
       })
   }
 }

@@ -1,11 +1,13 @@
 import React from 'react'
-import { ListItemText } from '@material-ui/core'
+import { Link } from 'react-router-dom';
+import { ListItemText, Button } from '@material-ui/core'
 
 import { connect } from "react-redux";
 
 const Profile = (props) => {
   return (
     <div>
+      <Button><Link to="/user/edit">Edit Profile</Link></Button>
       <h1>Profile</h1>
       <ListItemText primary="First Name" />
       <ListItemText primary={props.user.firstName} />
@@ -18,7 +20,7 @@ const Profile = (props) => {
       <ListItemText primary="Bithday" />
       <ListItemText primary={props.user.bithday} />
 
-    </div>
+    </div >
   )
 }
 
