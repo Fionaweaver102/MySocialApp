@@ -1,13 +1,10 @@
-const initialState = {
-  posts: [],
-  loading: true
-}
-
-const postReducer = (state = initialState, action) => {
+function postReducer(state = [], action) {
   switch (action.type) {
+    case "SET_POSTS":
+      return state = action.posts
     default:
       return state;
-  }
+  };
 }
 
 export default postReducer;

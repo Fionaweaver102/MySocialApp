@@ -1,59 +1,51 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
+
   def index 
-    user = User.all
+    @users = User.all
 
-    render json: User.arr_to_json
+    render json: UserSerializer.new(@users)
   end 
-  # GET /users/1
+
   def show
-    render json: user
+    render json: UserSerializer.new(@user)
   end
 
-  # POST /users
+
   def create
-    user = User.new(user_params)
+    @user = User.create(user_params)
 
-    if user.save
-      cookies[:user_id] = user.id
-      
-      render json: {status: 200, user: user}
+    if @user.valid?
+      @token = encode_token(user_id: @user.id)
+      render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
     else
-      render json: {status: 501, message: user.errors.full_messages}
+      render json: {errors: @user.errors.full_messages}, status: :not_acceptable
     end
-  end
-
-  def logged_in 
-    if current_user
-      render json: {logged_in: true, user: current_user}
-    else 
-      render json: {logged_in: false}
-    end 
   end 
 
-  # PATCH/PUT /users/1
   def update
-    if user.update(user_params)
-      render json: user
+    if @user.update(user_params)
+      render json: @user
     else
-      render json: user.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /users/1
+
   def destroy
-    user.destroy
+    @user.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_user
-      user = User.find(params[:id])
+      @user = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+
     def user_params
-      params.require(:user).permit(:firstName, :lastName, :gender, :username, :password_digest, :email, :phone, :birthday)
+      params.require(:user).permit(:firstName, :lastName, :gender, :username, :password, :email, :phone, :birthday)
     end
 end

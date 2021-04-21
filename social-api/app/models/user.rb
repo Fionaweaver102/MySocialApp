@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_secure_password
   has_many :posts
 
+  # validates: :username, :password,  presence: true, uniqueness: true 
+  # validates: :firstName, :lastName, :phone, :birthday, :gender, :email, presence: true 
+
   def self.arr_to_json
     self.all.map do |p|
       p.instance_to_json
