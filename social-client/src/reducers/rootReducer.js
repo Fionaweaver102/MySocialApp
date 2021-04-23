@@ -1,22 +1,34 @@
-import { combineReducers } from 'redux';
-import postReducer from './postReducer';
-import userReducer from './userReducer';
+const initialState = {
+  user: {},
+  loggedIn: false,
+  posts: [],
+  loading: true,
+  error: false
+}
 
-const rootReducer = combineReducers({
-  posts: postReducer,
-  user: userReducer,
-  loading: loadingReducer
-});
-
-export default rootReducer;
-
-function loadingReducer(state = true, action) {
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case 'ADD_USER':
+      return { ...state, loading: false, user: action.payload, loggedIn: true };
+    case "SHOW_USER":
+      return { ...state, user: action.payload, loading: false, loggedIn: true };
+    case 'ADD_POST':
+      return { ...state, loading: false, posts: action.post, loggedIn: true };
+    case "SET_POSTS":
+      return { ...state, loading: false, posts: action.posts, loggedIn: true };
+    // case 'DELETE_POST':
+    //   return { ...state, user: action.payload };
+    // case "DELETE_USER":
+    //   return { ...state, user: null, loading: false, loggedIn: false };
+    case 'LOGOUT':
+      return { ...initialState };
     case 'LOADING':
-      return state = true
-    case "NOT_LOADING":
-      return state = false
+      return { ...state, loading: true };
+    case "EDIT_CURRENT_USER":
+      return { ...state, loading: false, user: action.payload, loggedIn: true };
+    case "ERROR":
+      return { ...state, error: action.payload };
     default:
-      return state;
+      return state
   }
 }

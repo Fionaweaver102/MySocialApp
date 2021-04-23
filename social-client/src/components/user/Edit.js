@@ -1,11 +1,12 @@
+import { useHistory } from 'react-router';
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { TextField, Button } from '@material-ui/core'
-import { editUser, deleteUser } from "../../actions/userAction";
+import { editUser } from "../../actions/userAction";
 
 const EditUser = (props) => {
-
-  const [values, setValues] = useState({
+  let history = useHistory();
+  const [currentUser, setCurrentUser] = useState({
     id: props.user.id,
     firstName: props.user.firstName,
     lastName: props.user.lastName,
@@ -14,39 +15,40 @@ const EditUser = (props) => {
     gender: props.user.gender,
     phone: props.user.phone,
     picture: props.user.picture,
-    username: props.user.username,
-    password: props.user.password
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.editUser(values);
+    props.editUser(currentUser);
+    history.push('/users/:id')
   };
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    props.history.push('/')
-    props.deleteUser(values)
-  };
+  // const handleDelete = (e) => {
+  //   e.preventDefault();
+  //   props.history.push('/')
+  //   props.deleteUser(currentUser)
+  // };
 
   const handleChange = (event) => {
-    setValues({
-      ...values,
+    setCurrentUser({
+      ...currentUser,
       [event.target.name]: event.target.value,
     });
-  }
+  };
+
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="EditForm" noValidate>
+      <form onSubmit={handleSubmit.bind(this)} className="EditForm" noValidate>
 
         <TextField
           autoComplete="fname"
           name="firstName"
           id="firstName"
           label="First Name"
+          placeholder="First Name"
           onChange={handleChange}
-          value={values.firstName}
+          value={currentUser.firstName}
           autoFocus
         />
 
@@ -54,8 +56,9 @@ const EditUser = (props) => {
           id="lastName"
           label="Last Name"
           name="lastName"
+          placeholder="lastName"
           onChange={handleChange}
-          value={values.lastName}
+          value={currentUser.lastName}
           autoComplete="lname"
         />
 
@@ -63,17 +66,19 @@ const EditUser = (props) => {
           id="email"
           label="Email Address"
           name="email"
+          placeholder="Email"
           onChange={handleChange}
-          value={values.email}
+          defaultValue={currentUser.email}
           autoComplete="email"
         />
 
         <TextField
           id="date"
           label="Birthday"
+          name="birthday"
           type="date"
-          defaultValue="2017-05-24"
-          value={values.birthday}
+          placeholder="Birthday"
+          value={currentUser.birthday}
           onChange={handleChange}
           InputLabelProps={{
             shrink: true,
@@ -83,8 +88,9 @@ const EditUser = (props) => {
           id="gender"
           label="Gender"
           name="gender"
+          placeholder="Gender"
           onChange={handleChange}
-          value={values.gender}
+          value={currentUser.gender}
           autoComplete="gender"
         />
 
@@ -92,49 +98,30 @@ const EditUser = (props) => {
           id="phone"
           label="Phone Number"
           name="phone"
+          placeholder="Phone Number"
           onChange={handleChange}
-          value={values.phone}
+          value={currentUser.phone}
           autoComplete="phone"
         />
 
-        {/* <TextField
+        <TextField
           id="picture"
-          bordered={true}
+          name="picture"
           label="Profile Picture"
+          alt="user image"
+          placeholder="Profile Picture"
           onChange={handleChange}
-          value={values.picture}
+          defaultValue={currentUser.picture}
           autoComplete="picture"
-        /> */}
-
-        <TextField
-          id="username"
-          label="Username"
-          name="username"
-          onChange={handleChange}
-          value={values.username}
-          autoComplete="username"
-        />
-
-        <TextField
-          variant="outlined"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          onChange={handleChange}
-          value={values.password}
-          autoComplete="current-password"
         />
 
         <Button type="submit" className="EditButton">
           Edit Profile
         </Button>
 
-        <Button type="delete" className="deleteProfile" onSubmit={handleDelete}>
+        {/* <Button type="delete" className="deleteProfile" onSubmit={handleDelete}>
           Delete Profile
-        </Button>
+        </Button> */}
       </form>
     </div>
   );
@@ -142,8 +129,9 @@ const EditUser = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    loading: state.loading
   }
 }
 
-export default connect(mapStateToProps, { editUser, deleteUser })(EditUser)
+export default connect(mapStateToProps, { editUser })(EditUser);

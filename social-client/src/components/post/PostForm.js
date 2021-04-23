@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { addPost } from '../../actions/postAction';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-
+// import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+// import { useHistory } from 'react-router';
 
 class PostForm extends Component {
-
   state = {
     description: "",
     img: "",
@@ -29,9 +29,10 @@ class PostForm extends Component {
   }
 
   render() {
-
+    console.log("hello")
     return (
       <div>
+        <h1>Create Post</h1>
         <form onSubmit={this.handleSubmit}>
           <TextField
             id="description"
@@ -47,12 +48,12 @@ class PostForm extends Component {
             onChange={this.handleChange}
             value={this.state.img} />
 
-          <TextField
+          {/* <TextField
             id="tags"
             label="tags"
             name="description"
             onChange={this.handleChange}
-            value={this.state.description} />
+            value={this.state.description} /> */}
 
           <Button
             type="submit"
@@ -65,4 +66,4 @@ class PostForm extends Component {
   }
 }
 
-export default connect(((state) => ({ currentUserId: state.currentUser.id })), { addPost })(PostForm)
+export default connect(((state) => ({ currentUserId: state.user.id })), { addPost })(PostForm)

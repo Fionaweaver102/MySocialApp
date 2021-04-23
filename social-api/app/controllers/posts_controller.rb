@@ -15,12 +15,12 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = current_user.posts.build
+    post = Post.new(post_params)
 
-    if @post.save
-      render json: @post, status: :created, location: @post
+    if post.save
+      render json: post
     else
-      render json: @post.errors, status: :unprocessable_entity
+      render json: post.errors, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +46,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:description, :img)
+      params.require(:post).permit(:description, :img, :user_id)
     end
 end

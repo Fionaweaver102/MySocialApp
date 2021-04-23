@@ -1,11 +1,34 @@
 import React, { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
-import { Button, TextField } from '@material-ui/core';
+// import { Button, TextField } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Typography, Container } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const Login = (props) => {
+  const classes = useStyles();
   let history = useHistory()
 
   const [username, setUsername] = useState("")
@@ -67,36 +90,61 @@ const Login = (props) => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={loginFetch} className='LoginForm' noValidate>
-        <TextField
-          id="username"
-          label="Username"
-          name="username"
-          onChange={handleUsername}
-          value={username}
-          autoComplete="username"
-          autoFocus
-        />
-        <TextField
-          id="password"
-          label="Password"
-          name="password"
-          onChange={handlePassword}
-          value={password}
-          autoComplete="password"
-          autoFocus
-        />
-        <Button
-          type="submit"
-          className="LoginSubmit"
-        >Login</Button>
-        <RouteLink to={'/signup'}>
-          {"SignUp"}
-        </RouteLink>
-
-      </form>
-    </div>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log In
+        </Typography>
+          <form onSubmit={loginFetch} className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              onChange={handleUsername}
+              value={username}
+              autoComplete="username"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={handlePassword}
+              value={password}
+              autoComplete="password"
+              autoFocus
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit" fullWidth variant="contained color=" primary className={classes.submit}
+            >Login</Button>
+            <Grid container>
+              <Grid item xs>
+                <RouteLink to={'/signup'}>
+                  {"SignUp"}
+                </RouteLink>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
+    </div >
   );
 }
 

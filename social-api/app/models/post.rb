@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user 
-  serialize :tags
+  serialize :tags, Array
 
   def self.arr_to_json 
     self.all.map do |p|

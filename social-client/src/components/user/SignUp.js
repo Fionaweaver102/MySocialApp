@@ -2,11 +2,34 @@ import React, { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { Button, TextField } from '@material-ui/core';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Typography, Container } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { makeStyles } from '@material-ui/core/styles';
 
 
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const SignUp = (props) => {
+  const classes = useStyles();
   let history = useHistory();
 
   const [values, setValues] = useState({
@@ -70,7 +93,7 @@ const SignUp = (props) => {
         const userId = json.user.data.id
         localStorage.setItem('currentUser', userId)
         props.addUser(json.user.data)
-        history.push("/home")
+        history.push("/users/:id")
       })
       .catch(error => {
         console.log(error);
@@ -79,107 +102,150 @@ const SignUp = (props) => {
 
   return (
     <div>
-
-      <h1>Sign Up</h1>
-
-      <form onSubmit={signupFetch} className="SignupForm" noValidate>
-
-        <TextField
-          autoComplete="fname"
-          name="firstName"
-          id="firstName"
-          label="First Name"
-          onChange={handleChange}
-          value={values.firstName}
-          autoFocus
-        />
-
-        <TextField
-          id="lastName"
-          label="Last Name"
-          name="lastName"
-          onChange={handleChange}
-          value={values.lastName}
-          autoComplete="lname"
-        />
-
-        <TextField
-          id="email"
-          label="Email Address"
-          name="email"
-          onChange={handleChange}
-          value={values.email}
-          autoComplete="email"
-        />
-
-        <TextField
-          id="date"
-          label="Birthday"
-          type="date"
-          defaultValue="2017-05-24"
-          value={values.birthday}
-          onChange={handleChange}
-          InputLabelProps={{
-            shrink: true,
-          }} />
-
-        <TextField
-          id="gender"
-          label="Gender"
-          name="gender"
-          onChange={handleChange}
-          value={values.gender}
-          autoComplete="gender"
-        />
-
-        <TextField
-          id="phone"
-          label="Phone Number"
-          name="phone"
-          onChange={handleChange}
-          value={values.phone}
-          autoComplete="phone"
-        />
-
-        <TextField
-          id="picture"
-          bordered={true}
-          label="Profile Image"
-          name="picture"
-          onChange={handleChange}
-          value={values.picture}
-          autoComplete="picture"
-        />
-
-        <TextField
-          id="username"
-          label="Username"
-          name="username"
-          onChange={handleChange}
-          value={values.username}
-          autoComplete="username"
-        />
-
-        <TextField
-          variant="outlined"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          onChange={handleChange}
-          value={values.password}
-          autoComplete="current-password"
-        />
-
-        <Button type="submit" className="SignupButton" >
-          Sign Up
-        </Button>
-        <RouteLink to={`/login`}>
-          Already have an account? Sign in
-        </RouteLink>
-      </form>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            SignUp
+        </Typography>
+          <form onSubmit={signupFetch} className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="firstName"
+              id="firstName"
+              label="First Name"
+              onChange={handleChange}
+              value={values.firstName}
+              autoComplete="fname"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              onChange={handleChange}
+              value={values.lastName}
+              autoComplete="lname"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              onChange={handleChange}
+              value={values.email}
+              autoComplete="email"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="date"
+              label="Birthday"
+              type="date"
+              defaultValue="2017-05-24"
+              value={values.birthday}
+              onChange={handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }} />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="gender"
+              label="Gender"
+              name="gender"
+              onChange={handleChange}
+              value={values.gender}
+              autoComplete="gender"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="phone"
+              label="Phone Number"
+              name="phone"
+              onChange={handleChange}
+              value={values.phone}
+              autoComplete="phone"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="picture"
+              bordered={true}
+              label="Profile Image"
+              name="picture"
+              onChange={handleChange}
+              value={values.picture}
+              autoComplete="picture"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              onChange={handleChange}
+              value={values.username}
+              autoComplete="username"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={handleChange}
+              value={values.password}
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button type="submit" fullWidth variant="contained color=" primary className={classes.submit} >
+              Sign Up
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <RouteLink href="/login" variant="body2">
+                  {"Already have an account? Login!"}
+                </RouteLink>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 }

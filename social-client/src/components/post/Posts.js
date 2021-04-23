@@ -4,13 +4,15 @@ import Post from './Post';
 
 
 
+
+
 class Posts extends Component {
 
   render() {
     const { posts } = this.props;
 
     if (posts.length) {
-      const map = posts.map((post) => <Post key={post.id} description={post.description} img={post.img} tags={post.tags} />)
+      const map = posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
 
       return (
         < div >
@@ -28,7 +30,8 @@ class Posts extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts,
+    loading: state.loading,
+    posts: state.posts
   }
 }
 export default connect(mapStateToProps)(Posts);

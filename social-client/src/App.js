@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import Nav from './components/Nav';
 import Posts from './components/post/Posts';
@@ -11,12 +11,15 @@ import PostForm from './components/post/PostForm';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import EditUser from './components/user/Edit';
+import { getPosts } from './actions/postAction';
+import history from './history';
+
 
 
 class App extends Component {
-  // componentDidMount = () => {
-  //   this.props.getPosts()
-  // }
+  componentDidMount = () => {
+    this.props.getPosts()
+  }
 
   render() {
     const loggedIn = () => {
@@ -26,7 +29,7 @@ class App extends Component {
     }
     return (
       <div className="App" >
-        <Router>
+        <Router history={history}>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -37,6 +40,7 @@ class App extends Component {
             <Route exact path="/signup">
               <SignUp />
             </Route>
+            <Route exact path="/logout" component={Login} />
             <Route exact path="/posts" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
@@ -47,7 +51,7 @@ class App extends Component {
                 </>
               )
             )} />
-            <Route exact path="/add-post" render={() => (
+            <Route exact path="/posts/new" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
               ) : (
@@ -57,7 +61,7 @@ class App extends Component {
                 </>
               )
             )} />
-            < Route exact path="/profile" render={() => (
+            < Route exact path="/users/:id" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
               ) : (
@@ -67,12 +71,11 @@ class App extends Component {
                 </>
               )
             )} />
-            < Route exact path="/user/edit" render={() => (
+            < Route exact path="/users/:id/edit" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
               ) : (
                 <>
-                  <Profile />
                   <EditUser />
                 </>
               )
@@ -87,9 +90,10 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn,
+    loading: state.loading,
+    loggedIn: state.loggedIn
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { getPosts })(App);
 
