@@ -1,17 +1,15 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { getPosts } from "../actions/postAction";
 import { LogOut } from './user/LogOut';
 import { logOutUser } from '../actions/userAction';
-// import Paper from "@material-ui/core/Paper";
-import Button from '@material-ui/core/Button';
+import { Button, AppBar, Toolbar, Fab, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Fab from "@material-ui/core/Fab";
-import Avatar from '@material-ui/core/Avatar';
-// import { getPosts } from '../actions/userAction';
+// import AppBar from "@material-ui/core/AppBar";
+// import Toolbar from "@material-ui/core/Toolbar";
+// import Fab from "@material-ui/core/Fab";
+// import Avatar from '@material-ui/core/Avatar';
+
 
 
 

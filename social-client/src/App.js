@@ -1,4 +1,4 @@
-import { Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import Nav from './components/Nav';
 import Posts from './components/post/Posts';
@@ -12,8 +12,6 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 // import EditUser from './components/user/Edit';
 import { getPosts } from './actions/postAction';
-import history from './history';
-
 
 
 class App extends Component {
@@ -29,7 +27,7 @@ class App extends Component {
     }
     return (
       <div className="App" >
-        <Router history={history}>
+        <Router >
           <Switch>
             <Route exact path="/">
               <Home />

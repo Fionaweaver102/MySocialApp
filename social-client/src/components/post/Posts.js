@@ -29,7 +29,6 @@ const Posts = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
     posts: state.posts
   }
 }

@@ -6,8 +6,7 @@ import { TextField, Button } from '@material-ui/core';
 class PostForm extends Component {
   state = {
     description: "",
-    img: "",
-    tags: ""
+    img: ""
   }
 
   handleChange = e => {
@@ -18,15 +17,16 @@ class PostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    this.props.addPost(this.state, this.props.currentUserId, this.props.history)
+    this.props.addPost(this.state, this.props.currentUserId)
     this.setState({
       description: "",
-      img: "",
-      tags: ""
+      img: ""
     })
   }
 
   render() {
+    let user = localStorage.getItem('jwt_token')
+    console.log(user)
     console.log("hello")
     return (
       <div>

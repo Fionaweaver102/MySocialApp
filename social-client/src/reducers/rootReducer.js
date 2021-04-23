@@ -13,7 +13,7 @@ export default function rootReducer(state = initialState, action) {
     case "SHOW_USER":
       return { ...state, user: action.payload, loading: false, loggedIn: true };
     case 'ADD_POST':
-      return { ...state, loading: false, posts: action.post, loggedIn: true };
+      return { ...state, loading: false, post: action.payload, loggedIn: true };
     case "SET_POSTS":
       return { ...state, loading: false, posts: action.posts, loggedIn: true };
     case 'LOGOUT':
