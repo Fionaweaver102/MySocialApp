@@ -16,16 +16,12 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, loading: false, posts: action.post, loggedIn: true };
     case "SET_POSTS":
       return { ...state, loading: false, posts: action.posts, loggedIn: true };
-    // case 'DELETE_POST':
-    //   return { ...state, user: action.payload };
-    // case "DELETE_USER":
-    //   return { ...state, user: null, loading: false, loggedIn: false };
     case 'LOGOUT':
       return { ...initialState };
     case 'LOADING':
       return { ...state, loading: true };
-    case "EDIT_CURRENT_USER":
-      return { ...state, loading: false, user: action.payload, loggedIn: true };
+    // case "EDIT_CURRENT_USER":
+    //   return { ...state, loading: false, user: action.payload, loggedIn: true };
     case "ERROR":
       return { ...state, error: action.payload };
     default:

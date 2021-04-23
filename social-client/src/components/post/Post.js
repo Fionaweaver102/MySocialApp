@@ -1,25 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-// import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, Card, CardContent, CardHeader, Avatar, Typography, Grid } from '@material-ui/core';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 2000,
+    maxWidth: 1000,
+    backgroundColor: red[500],
+    'margin-left': '8%',
+    width: "90%",
+
   },
   media: {
     height: 100,
@@ -39,38 +29,27 @@ const Post = (props) => {
 
   return (
     <div>
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
+      <br />
+      <Grid item xs={12} >
+        <Card className={classes.card}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="Recipe" className={classes.avatar}>
+                R
             </Avatar>
-          }
-        />
-        <img src={img} alt={'blah'} />
-        <CardContent>
-          <Typography component="p">
-            {description}
-          </Typography>
-        </CardContent>
-        {/* <div>
-          {this.getTags(tags)}
-        </div> */}
-      </Card>
+            }
+          />
+          <img src={img} alt={'blah'} />
+          <CardContent>
+            <Typography component="p">
+              {description}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+      <br />
     </div >
   )
 }
-
-//   getTags(tags) {
-//     let html = '';
-//     if (tags.length) {
-//       for (let i = 0; i < tags.length; {
-//         let tag = tags[i];
-//         html += tag + ' ';
-//       }
-//       return html;
-//     }
-//   }
-// }
 
 export default Post

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Post from './Post';
 
@@ -6,27 +6,26 @@ import Post from './Post';
 
 
 
-class Posts extends Component {
+const Posts = (props) => {
 
-  render() {
-    const { posts } = this.props;
+  const { posts } = props;
 
-    if (posts.length) {
-      const map = posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
-
-      return (
-        < div >
-          {map}
-        </div>
-      )
-    }
+  if (posts.length) {
+    const map = posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
 
     return (
-      <h4>Loading...</h4>
-
+      < div >
+        {map}
+      </div>
     )
   }
+
+  return (
+    <h4>Loading...</h4>
+
+  )
 }
+
 
 const mapStateToProps = (state) => {
   return {

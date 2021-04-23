@@ -10,7 +10,7 @@ import SignUp from './components/user/SignUp';
 import PostForm from './components/post/PostForm';
 import { connect } from 'react-redux';
 import { Component } from 'react';
-import EditUser from './components/user/Edit';
+// import EditUser from './components/user/Edit';
 import { getPosts } from './actions/postAction';
 import history from './history';
 
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     const loggedIn = () => {
       if (this.props.loggedIn === false) {
-        return true
+        return false
       }
     }
     return (
@@ -71,15 +71,16 @@ class App extends Component {
                 </>
               )
             )} />
-            < Route exact path="/users/:id/edit" render={() => (
+            {/* < Route exact path="/users/:id/edit" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
               ) : (
                 <>
+                  <Nav />
                   <EditUser />
                 </>
               )
-            )} />
+            )} /> */}
           </Switch>
         </Router>
         <Footer />
@@ -96,4 +97,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { getPosts })(App);
+
 

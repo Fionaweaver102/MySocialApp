@@ -157,12 +157,9 @@ const SignUp = (props) => {
               id="date"
               label="Birthday"
               type="date"
-              defaultValue="2017-05-24"
               value={values.birthday}
               onChange={handleChange}
-              InputLabelProps={{
-                shrink: true,
-              }} />
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -238,7 +235,7 @@ const SignUp = (props) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <RouteLink href="/login" variant="body2">
+                <RouteLink to={"/login"} variant="body2">
                   {"Already have an account? Login!"}
                 </RouteLink>
               </Grid>

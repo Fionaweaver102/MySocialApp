@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
-// import { Button, TextField } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Typography, Container } from '@material-ui/core';
@@ -132,12 +131,12 @@ const Login = (props) => {
               label="Remember me"
             />
             <Button
-              type="submit" fullWidth variant="contained color=" primary className={classes.submit}
+              type="submit" fullWidth variant="contained color=" className={classes.submit}
             >Login</Button>
             <Grid container>
               <Grid item xs>
                 <RouteLink to={'/signup'}>
-                  {"SignUp"}
+                  {"Don't have an account? SignUp!"}
                 </RouteLink>
               </Grid>
             </Grid>

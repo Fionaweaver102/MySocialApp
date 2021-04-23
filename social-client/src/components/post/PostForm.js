@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { addPost } from '../../actions/postAction';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-// import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-// import { useHistory } from 'react-router';
 
 class PostForm extends Component {
   state = {
@@ -47,13 +45,6 @@ class PostForm extends Component {
             name="img"
             onChange={this.handleChange}
             value={this.state.img} />
-
-          {/* <TextField
-            id="tags"
-            label="tags"
-            name="description"
-            onChange={this.handleChange}
-            value={this.state.description} /> */}
 
           <Button
             type="submit"

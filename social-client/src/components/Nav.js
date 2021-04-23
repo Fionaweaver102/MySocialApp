@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { getPosts } from "../actions/postAction";
 import { LogOut } from './user/LogOut';
 import { logOutUser } from '../actions/userAction';
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from "@material-ui/core/AppBar";
@@ -31,19 +31,10 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     margin: "0 auto"
-  },
-  button: {
-    margin: theme.spacing.unit,
   }
 }));
 
 const Nav = (props) => {
-
-  // componentDidMount = () => {
-  //   this.props.getPosts()
-  //   console.log(this.props.posts)
-  // }
-
 
   const classes = useStyles();
   return (

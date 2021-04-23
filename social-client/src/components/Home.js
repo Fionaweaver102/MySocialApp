@@ -4,6 +4,8 @@ import { Button, ButtonGroup } from '@material-ui/core';
 
 class Home extends Component {
   render() {
+    let user = localStorage.getItem('jwt_token')
+    console.log(user)
     return (
       <div className="Home" >
         <h1>Welcome to my app</h1>

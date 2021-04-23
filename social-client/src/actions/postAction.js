@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 export const getPosts = () => {
   return (dispatch) => {
@@ -45,31 +45,6 @@ export const addPost = (post, id) => {
   }
 }
 
-
-// export const addPost = (post, id, history) => {
-//   const postData = {
-//     img: post.img,
-//     description: post.description,
-//     tags: post.tags,
-//     user_id: id
-//   }
-//   return dispatch => {
-
-//     fetch("http://localhost:3001/posts", {
-//       method: "POST",
-//       headers: {
-//         "Accept": "application/json",
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(postData)
-//     })
-//       .then(r => r.json())
-//       .then(post => {
-//         dispatch({ type: 'ADD_POST', post })
-//         // history.push("/posts")
-//       })
-//   }
-// }
 
 
 
