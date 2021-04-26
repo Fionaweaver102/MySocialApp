@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let user = localStorage.getItem('jwt_token')
+console.log(user)
+
 const Home = () => {
   const classes = useStyles();
   // let user = localStorage.getItem('jwt_token')

@@ -42,7 +42,7 @@ const Nav = (props) => {
             <Link to="/posts/new">Create Post</Link>
           </Button>
           <Button variant="outlined" color="secondary" className={classes.button}>
-            <Link to="/users/:id">Profile</Link>
+            <Link to="/profile">Profile</Link>
           </Button>
           <Button variant="outlined" color="secondary" className={classes.button}>
             <LogOut history={props.history} user={props.user} logOutUser={props.logOutUser} />

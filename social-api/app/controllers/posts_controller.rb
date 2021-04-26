@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :session_user
 
   # GET /posts
   def index
@@ -15,14 +16,10 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    # post = Post.find_or_create_by(user_id: post_params[:user_id])
-    # post.update(post_params)
-    # current_user.posts.push(post)
-    # render json: UserSerializer.new(current_user)
     post = Post.create(post_params)
-
     if post.save
-      render json: post.instance_to_json, status: :created, location: :post
+      session_user.posts.push(post)
+      render json: post
     else
       render json: post.errors, status: :unprocessable_entity
     end

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getPosts } from '../../actions/postAction';
 import { connect } from 'react-redux';
 import Post from './Post';
 
 
-
-
-
 const Posts = (props) => {
+
+  useEffect(() => {
+    props.getPosts();
+  })
 
   const { posts } = props;
 
@@ -29,8 +31,8 @@ const Posts = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts
+    posts: state.posts,
   }
 }
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
 

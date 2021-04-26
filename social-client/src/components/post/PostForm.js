@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { TextField, Button } from '@material-ui/core';
@@ -15,24 +15,20 @@ const PostForm = (props) => {
     setValues({ ...values, [event.target.name]: event.target.value })
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    postData()
-  }
-
-  const postData = async () => {
+  const postData = () => {
     const inputData = {
       description: values.description,
       img: values.img,
       user_id: localStorage.getItem('currentUser')
     }
 
-    await fetch("http://localhost:3001/posts"
+    fetch("http://localhost:3001/posts"
       , {
         method: "POST",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
         },
         body: JSON.stringify(inputData),
       })
@@ -41,7 +37,17 @@ const PostForm = (props) => {
         props.addPost(post)
         history.push("/posts")
       })
+  };
+
+  // useEffect(() => {
+  //   postData();
+  // }, [])
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    postData()
   }
+
 
   let user = localStorage.getItem('currentUser')
   console.log(user)

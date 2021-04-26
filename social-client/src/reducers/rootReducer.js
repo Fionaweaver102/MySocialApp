@@ -1,8 +1,8 @@
 const initialState = {
   user: {},
-  userPosts: [],
   loggedIn: false,
   posts: [],
+  userPosts: [],
   loading: true,
   error: false
 }
@@ -13,11 +13,11 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, loading: false, user: action.payload, loggedIn: true };
     case 'SET_POST':
       return {
-        ...state, posts: state.posts.concat([action.payload]), loading: false
+        ...state, posts: state.posts.concat([action.payload]), userPosts: state.userPosts.concat([action.payload]), loading: false, user: state.user.posts.concat([action.payload]), loggedIn: true
       };
     case "SET_POSTS":
-      return { ...state, loading: false, posts: action.posts };
-    case 'LOGOUT':
+      return { ...state, loading: false, posts: action.posts, loggedIn: true };
+    case 'REMOVE_USER':
       return { ...initialState };
     case 'LOADING':
       return { ...state, loading: true };

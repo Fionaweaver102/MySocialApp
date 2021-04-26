@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Paper, List, ListItem, Divider } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-// import Post from '../post/Post';
+import Post from '../post/Post';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
 const Profile = (props) => {
   const classes = useStyles();
 
-  let userCurrent = localStorage.getItem('currentUser')
-  console.log(userCurrent)
-  console.log(props.user.posts)
-
-  // const userPosts = props.user.posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
+  const posts = () => {
+    let postData = props.userPosts.map(
+      (post) => <Post key={post.id} description={post.description} img={post.img} />)
+    return postData
+  }
 
   return (
     <div className={classes.root}>
@@ -80,8 +80,8 @@ const Profile = (props) => {
 
 
           <br />
-          {/* <h2>Your Posts</h2>
-          <ListItemText primary={userPosts} /> */}
+          <h2>Your Posts</h2>
+          <ListItemText primary={posts()} />
         </List>
       </Paper>
     </div >
@@ -90,7 +90,8 @@ const Profile = (props) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.attributes
+    user: state.user.attributes,
+    userPosts: state.user.attributes.posts
   }
 }
 

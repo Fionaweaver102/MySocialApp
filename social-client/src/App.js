@@ -12,12 +12,11 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 // import EditUser from './components/user/Edit';
 import { getPosts } from './actions/postAction';
-import { userLoggedIn } from './actions/userAction';
+
 
 class App extends Component {
   componentDidMount = () => {
     this.props.getPosts();
-    this.props.userLoggedIn();
   }
 
   render() {
@@ -60,7 +59,7 @@ class App extends Component {
                 </>
               )
             )} />
-            < Route exact path="/users/:id" render={() => (
+            < Route exact path="/profile" render={() => (
               loggedIn() ? (
                 <Redirect to="/" />
               ) : (
@@ -95,6 +94,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getPosts, userLoggedIn })(App);
+export default connect(mapStateToProps, { getPosts })(App);
 
 

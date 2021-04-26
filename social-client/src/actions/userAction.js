@@ -1,3 +1,5 @@
+
+
 export const logOutUser = (history) => {
 
   return dispatch => {
@@ -7,33 +9,7 @@ export const logOutUser = (history) => {
   }
 }
 
-export const userLoggedIn = () => {
-  const token = localStorage.getItem("jwt_token")
 
-  if (token) {
-    return dispatch => {
-      fetch("http://localhost:3001/auto_login", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(r => r.json())
-        .then(data => {
-          let user = { id: data.id, username: data.username }
-          dispatch({ type: 'SET_USER', user })
-
-        })
-    }
-  }
-
-  return dispatch => {
-    dispatch({ type: 'REMOVE_USER' })
-  }
-
-
-}
 
 // export const deleteUser = (user) => {
 //   return (dispatch) => {
