@@ -1,12 +1,10 @@
 import React from "react";
-// import { Link } from 'react-router-dom';
 import { ListItemText } from '@material-ui/core'
 import { connect } from "react-redux";
-// import Image from 'material-ui-image'
 import { Paper, List, ListItem, Divider } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import Post from '../post/Post';
+// import Post from '../post/Post';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,9 +37,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
   const classes = useStyles();
+
+  let userCurrent = localStorage.getItem('currentUser')
+  console.log(userCurrent)
   console.log(props.user.posts)
 
-  const userPosts = props.user.posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
+  // const userPosts = props.user.posts.map((post) => <Post key={post.id} description={post.description} img={post.img} />)
 
   return (
     <div className={classes.root}>
@@ -79,8 +80,8 @@ const Profile = (props) => {
 
 
           <br />
-          <h2>Your Posts</h2>
-          <ListItemText primary={userPosts} />
+          {/* <h2>Your Posts</h2>
+          <ListItemText primary={userPosts} /> */}
         </List>
       </Paper>
     </div >
@@ -94,3 +95,7 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Profile);
+
+
+
+

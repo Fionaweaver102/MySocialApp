@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+#   skip_before_action :authorized, only: [:create]
 
   def create
 
@@ -12,6 +12,18 @@ class AuthController < ApplicationController
       else
           render json: { errors: ['Invalid username or password'] }, status: :unauthorized
       end
+  end
+
+  def auto_login
+    if session_user
+        render json: session_user
+    else 
+        render json: {errors: "No user is logged in. Make sure you're logged in."}
+    end  
+  end 
+
+  def logged_in?
+    !!session_user
   end
 
   private

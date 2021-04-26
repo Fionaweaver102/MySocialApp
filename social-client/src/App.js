@@ -12,11 +12,12 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 // import EditUser from './components/user/Edit';
 import { getPosts } from './actions/postAction';
-
+import { userLoggedIn } from './actions/userAction';
 
 class App extends Component {
   componentDidMount = () => {
-    this.props.getPosts()
+    this.props.getPosts();
+    this.props.userLoggedIn();
   }
 
   render() {
@@ -94,6 +95,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getPosts })(App);
+export default connect(mapStateToProps, { getPosts, userLoggedIn })(App);
 
 

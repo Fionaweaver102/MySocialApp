@@ -5,13 +5,6 @@ import { LogOut } from './user/LogOut';
 import { logOutUser } from '../actions/userAction';
 import { Button, AppBar, Toolbar, Fab, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import Fab from "@material-ui/core/Fab";
-// import Avatar from '@material-ui/core/Avatar';
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

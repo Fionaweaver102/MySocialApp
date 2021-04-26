@@ -1,5 +1,6 @@
 const initialState = {
   user: {},
+  userPosts: [],
   loggedIn: false,
   posts: [],
   loading: true,
@@ -10,12 +11,12 @@ export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_USER':
       return { ...state, loading: false, user: action.payload, loggedIn: true };
-    case "SHOW_USER":
-      return { ...state, user: action.payload, loading: false, loggedIn: true };
-    case 'ADD_POST':
-      return { ...state, loading: false, post: action.payload, loggedIn: true };
+    case 'SET_POST':
+      return {
+        ...state, posts: state.posts.concat([action.payload]), loading: false
+      };
     case "SET_POSTS":
-      return { ...state, loading: false, posts: action.posts, loggedIn: true };
+      return { ...state, loading: false, posts: action.posts };
     case 'LOGOUT':
       return { ...initialState };
     case 'LOADING':

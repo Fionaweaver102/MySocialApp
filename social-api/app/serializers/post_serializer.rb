@@ -1,4 +1,4 @@
 class PostSerializer 
-  include FastJsonapi::ObjectSericalizer
-  attributes :description, :img, :tags 
+  include FastJsonapi::ObjectSerializer
+  attributes :description, :img, :tags, :user
 end 

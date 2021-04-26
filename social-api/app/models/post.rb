@@ -14,7 +14,10 @@ class Post < ApplicationRecord
       description: self.description,
       img: self.img,
       tags: self.tags,
-      user_id: self.user_id
+      user: {
+        id: self.user.id,
+        username: self.user.id
+      }
     }
   end 
 end
