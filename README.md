@@ -4,7 +4,9 @@
 
 # Installation 
 
-- Fork and clone this repository. Then cd into social-api, run 'rails s' to start the backend server; after that, cd into social-client and run 'npm start' to start the frontend server. 
+- Fork and clone this repository. 
+- cd into social-api, run 'rails s' to start the backend server
+- cd into social-client and run 'npm start' to start the frontend server. 
 
 # Description 
 
